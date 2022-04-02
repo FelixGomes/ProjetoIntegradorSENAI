@@ -2,16 +2,16 @@ package model;
 
 public class Veiculo {
 	
-	private int id;
+	private  int id;
 	private String modelo;
 	private boolean disponivel;
+	private Double consumoKmPorL;
 	private Double quilometragemAtual;
-	private static Double consumoKmPorL;
 	
-	public Veiculo(String modelo, boolean disponivel, Double consumoKmPorL) {
+	public Veiculo (String modelo, Double quilometragemAtual, Double consumoKmPorL) {
 		this.modelo = modelo;
-		this.disponivel = disponivel;
-		Veiculo.consumoKmPorL = consumoKmPorL;
+		this.quilometragemAtual = quilometragemAtual;
+		this.consumoKmPorL = consumoKmPorL;
 	}
 	
 	public int getId() {
@@ -21,38 +21,36 @@ public class Veiculo {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	public String getModelo() {
 		return modelo;
 	}
-
+	
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-
+	
+	public Double getQuilometragemAtual() {
+		return quilometragemAtual;
+	}
+	
+	public void setQuilometragemAtual(Double quilometragemAtual) {
+		this.quilometragemAtual = quilometragemAtual;
+	}
+	
 	public boolean isDisponivel() {
 		return disponivel;
 	}
-
+	
 	public void setDisponivel(boolean disponivel) {
 		this.disponivel = disponivel;
 	}
 
-	public Double getQuilometragemAtual() {
-		return quilometragemAtual;
+	public void setConsumoKmPorL(double consumoKmPorL) {
+		this.consumoKmPorL= consumoKmPorL;
 	}
 
-	public void setQuilometragemAtual(Double quilometragemAtual) {
-		this.quilometragemAtual = quilometragemAtual;
-	}
-
-	public static Double getConsumoKmPorL() {
+	public double getConsumoKmPorL() {	
 		return consumoKmPorL;
 	}
-
-	public void setConsumoKmPorL(Double consumoKmPorL) {
-		Veiculo.consumoKmPorL = consumoKmPorL;
-	}
-	
-
 }

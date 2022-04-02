@@ -1,33 +1,36 @@
 package model;
 
 public class Chamado {
+	
 	private int id;
-	private Double distanciaPercorrida;
-	private Double calculoCO2PorLdeGasolina;
-	private Veiculo modelo ;
-	private Colaborador nome;
-	private EnderecoAtendimento cep;
+	private String endereco;
+	private Double distanciaPercorrida;;
+	private Double totalKgCarbonoEmitidoPorLitro;
+	private Colaborador colaborador;
+	private Veiculo veiculo;
 	
-	
-	public Chamado(double distanciaPercorrida, Veiculo modelo, Colaborador nome, EnderecoAtendimento cep) {
-		this.modelo = modelo;
-		this.nome = nome;
-		this.cep = cep;
+	public Chamado(String endereco, Double distanciaPercorrida, Colaborador colaborador, Veiculo veiculo) {
+		this.endereco = endereco;
 		this.distanciaPercorrida = distanciaPercorrida;
-		if (distanciaPercorrida > 0) {
-			totalCO2PorL();
-		}
+		this.colaborador = colaborador;
+		this.veiculo = veiculo;
+		calculaEmissaoDeCarbono();
 	}
 	
-	public Chamado() {
-	}
-
 	public int getId() {
 		return id;
 	}
 	
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getEndereco() {
+		return endereco;
+	}
+	
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 	
 	public double getDistanciaPercorrida() {
@@ -37,41 +40,38 @@ public class Chamado {
 	public void setDistanciaPercorrida(double distanciaPercorrida) {
 		this.distanciaPercorrida = distanciaPercorrida;
 	}
-
-	public Double getCalculoCO2PorLdeGasolina() {
-		return calculoCO2PorLdeGasolina;
-	}
-
-	public void setCalculoCO2PorLdeGasolina(Double calculoCO2PorLdeGasolina) {
-		this.calculoCO2PorLdeGasolina = calculoCO2PorLdeGasolina;
-	}
-
-	public Veiculo getVeiculo() {
-		return modelo;
+	
+	public double getTotalKgCarbonoEmitidoPorLitro() {
+		return totalKgCarbonoEmitidoPorLitro;
 	}
 	
-	public void setVeiculo(Veiculo modelo) {
-		this.modelo = modelo;
+	public void setTotalKgCarbonoEmitidoPorLitro(double totalKgCarbonoEmitidoPorLitro) {
+		this.totalKgCarbonoEmitidoPorLitro = totalKgCarbonoEmitidoPorLitro;
 	}
 	
 	public Colaborador getColaborador() {
-		return nome;
+		return colaborador;
 	}
 	
-	public void setColaborador(Colaborador nome) {
-		this.nome = nome;
+	public void setColaborador(Colaborador colaborador) {
+		this.colaborador = colaborador;
 	}
 	
-	public EnderecoAtendimento getEnderecoAtendimento() {
-		return cep;
+	public Veiculo getVeiculo() {
+		return veiculo;
 	}
 	
-	public void setEnderecoAtendimento(EnderecoAtendimento cep) {
-		this.cep = cep;
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
 	}
 	
-	public double totalCO2PorL() {
-		this.calculoCO2PorLdeGasolina = Veiculo.getConsumoKmPorL() * 0.82 * 0.75 * 3.7;
-		return calculoCO2PorLdeGasolina * distanciaPercorrida;
+	public void calculaEmissaoDeCarbono() {
+		
+		double percentualGasolinaPorLitro = 0.82;
+		double densidadeGasolina = 0.75;
+		double transformaGasolinaEmCo2 = 3.7; 
+		
+		double consumo = distanciaPercorrida / veiculo.getConsumoKmPorL();
+		this.totalKgCarbonoEmitidoPorLitro = consumo * percentualGasolinaPorLitro * densidadeGasolina * transformaGasolinaEmCo2;
 	}
 }
