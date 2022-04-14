@@ -8,7 +8,7 @@ import model.Chamado;
 
 public class ChamadoController{
 	
-	public void novoChamado(Chamado chamado) throws Exception {
+	public void criarChamado(Chamado chamado) throws Exception {
 		
 		if (chamado.getEndereco() == null || chamado.getEndereco().length() < 5) {
 			throw new Exception("Alerta: Endereço inválido.");
@@ -22,24 +22,28 @@ public class ChamadoController{
 			throw new Exception("Alerta: Veiculo indisponível.");
 		}	
 		
-		ChamadoDao.getInstance().novoChamado(chamado);
-		VeiculoDao.getInstance().desabilitarveiculos(chamado.getVeiculo());
-		ChamadoDao.getInstance().novoChamado(chamado);
+		ChamadoDao.getInstance().criarChamado(chamado);
+		VeiculoDao.getInstance().atualizar(chamado.getVeiculo());
 	}
 	
 	public void atualizar(Chamado chamado) throws Exception {
+		
+		if (chamado.getEndereco() == null || chamado.getEndereco().length() < 10)
+			throw new Exception("Alerta: Endereço inválido."); 
+		
+		if (chamado.getDistanciaPercorrida() < 1)
+			throw new Exception("Alerta: Distancia percorrida inválida.");
 
 		ChamadoDao.getInstance().atualizar(chamado);
-		VeiculoDao.getInstance().habilitarveiculos(chamado.getVeiculo());
 	}
 	
-	public void del(int id) throws Exception {
+	public void del(int idChamado) throws Exception {
 		
-		if (id == 0) {
+		if (idChamado == 0) {
 			throw new Exception("O Id do chamado é inválido");
 		}
 		
-		ChamadoDao.getInstance().del(id);
+		ChamadoDao.getInstance().excluir(idChamado);
 	}
 	
 	public List<Chamado> listar() throws Exception{

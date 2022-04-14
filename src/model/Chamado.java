@@ -2,9 +2,9 @@ package model;
 
 public class Chamado {
 	
-	private int id;
+	private int idChamado;
 	private String endereco;
-	private Double distanciaPercorrida;;
+	private Double distanciaPercorrida;
 	private Double totalKgCarbonoEmitidoPorLitro;
 	private Colaborador colaborador;
 	private Veiculo veiculo;
@@ -17,12 +17,16 @@ public class Chamado {
 		calculaEmissaoDeCarbono();
 	}
 	
-	public int getId() {
-		return id;
+	public Chamado() {
+		
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public int getId() {
+		return idChamado;
+	}
+	
+	public void setId(int idChamado) {
+		this.idChamado = idChamado;
 	}
 	
 	public String getEndereco() {

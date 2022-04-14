@@ -31,7 +31,7 @@ public class ColaboradorController {
 			throw new Exception("Nenhum colaborador selecionado");
 		}
 		
-		ColaboradorDao.getInstance().del(idColaborador);
+		ColaboradorDao.getInstance().excluir(idColaborador);
 	}
 	
 	public List<Colaborador> listar(){

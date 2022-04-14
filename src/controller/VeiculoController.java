@@ -42,13 +42,13 @@ public class VeiculoController {
 		
 	}
 	
-	public void del(int id) throws Exception {
+	public void excluir(int id) throws Exception {
 		
 		if (id == 0) {
 			throw new Exception ("Alerta: Id inválido.");
 		}
 		
-		VeiculoDao.getInstance().del(id);
+		VeiculoDao.getInstance().excluir(id);
 		
 	}
 	

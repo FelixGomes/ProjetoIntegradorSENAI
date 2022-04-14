@@ -14,6 +14,10 @@ public class Veiculo {
 		this.consumoKmPorL = consumoKmPorL;
 	}
 	
+	public Veiculo() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}
